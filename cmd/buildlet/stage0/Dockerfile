@@ -2,7 +2,7 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-FROM golang:1.13 AS build
+FROM golang:1.19beta1 AS build
 LABEL maintainer "golang-dev@googlegroups.com"
 
 ENV GO111MODULE=on
@@ -26,6 +26,6 @@ COPY . /go/src/golang.org/x/build/
 RUN go install golang.org/x/build/cmd/buildlet/stage0
 RUN CGO_ENABLED=0 go build -o /go/bin/stage0.static golang.org/x/build/cmd/buildlet/stage0
 
-FROM golang:1.13
+FROM golang:1.19beta1
 COPY --from=build /go/bin/stage0 /go/bin/stage0
 COPY --from=build /go/bin/stage0.static /go/bin/stage0.static
