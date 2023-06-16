@@ -8,7 +8,7 @@
 
 FROM golang/buildlet-stage0 AS stage0
 
-FROM alpine:3.10
+FROM alpine:3.16
 MAINTAINER golang-dev <golang-dev@googlegroups.com>
 
 RUN apk add --no-cache \
