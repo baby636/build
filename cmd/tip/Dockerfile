@@ -1,4 +1,4 @@
-FROM golang:1.12 AS build
+FROM golang:1.23rc1 AS build
 
 ENV GO111MODULE=on
 ENV GOPROXY=https://proxy.golang.org
@@ -22,7 +22,7 @@ COPY . /go/src/golang.org/x/build/
 # Install binary to /go/bin:
 RUN go install golang.org/x/build/cmd/tip
 
-FROM golang:1.12
+FROM golang:1.23rc1
 
 RUN apt-get update && apt-get install --no-install-recommends -y -q build-essential git
 # golang puts its go install here (weird but true)
